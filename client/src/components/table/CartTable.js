@@ -2,7 +2,18 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { toast } from "react-toastify";
-import { Table, Button, Typography, Space, Popconfirm, Tag, Image, InputNumber, Select, Statistic } from "antd";
+import {
+  Table,
+  Button,
+  Typography,
+  Space,
+  Popconfirm,
+  Tag,
+  Image,
+  InputNumber,
+  Select,
+  Statistic,
+} from "antd";
 
 import { BsTrash, BsThreeDots, BsCheckLg, BsXLg } from "react-icons/bs";
 import { colors } from "../../common/constant";
@@ -79,7 +90,13 @@ function CartTable({ loading, data }) {
       title: "Image",
       dataIndex: "images",
       key: "images",
-      render: (text) => <Image src={text[0].url} alt={text[0].public_id} key={text[0].public_id} />,
+      render: (text) => (
+        <Image
+          src={text[0]?.url}
+          alt={text[0]?.public_id}
+          key={text[0]?.public_id}
+        />
+      ),
     },
     {
       title: "Name",
@@ -101,7 +118,9 @@ function CartTable({ loading, data }) {
       dataIndex: "price",
       key: "price",
       width: 100,
-      render: (text) => <Statistic value={text} groupSeparator="." prefix="$"></Statistic>,
+      render: (text) => (
+        <Statistic value={text} groupSeparator="." prefix="$"></Statistic>
+      ),
 
       sorter: (a, b) => a.price - b.price,
     },
@@ -110,7 +129,12 @@ function CartTable({ loading, data }) {
       dataIndex: "count",
       key: "count",
       width: 100,
-      render: (text, record) => <InputNumber value={record.count} onChange={(value) => handleQuantityChange(value, record)} />,
+      render: (text, record) => (
+        <InputNumber
+          value={record.count}
+          onChange={(value) => handleQuantityChange(value, record)}
+        />
+      ),
 
       sorter: (a, b) => a.count - b.count,
     },
@@ -120,12 +144,19 @@ function CartTable({ loading, data }) {
       key: "color",
       width: 100,
       render: (text, record) => (
-        <Select onSelect={(value) => handleColorChange(value, record)} value={record.color} placeholder="Select color.." style={{ width: "100%" }}>
+        <Select
+          onSelect={(value) => handleColorChange(value, record)}
+          value={record.color}
+          placeholder="Select color.."
+          style={{ width: "100%" }}
+        >
           {colors
             .filter((c) => c !== record.color)
             .map((c) => (
               <Select.Option key={c} value={c}>
-                <Tag color={c.toLowerCase() !== "white" && c.toLowerCase()}>{c}</Tag>
+                <Tag color={c.toLowerCase() !== "white" && c.toLowerCase()}>
+                  {c}
+                </Tag>
               </Select.Option>
             ))}
         </Select>
@@ -138,7 +169,11 @@ function CartTable({ loading, data }) {
       dataIndex: "shipping",
       key: "shipping",
       width: 100,
-      render: (text) => <Tag color={text.toLowerCase() === "yes" ? "success" : "error"}>{text}</Tag>,
+      render: (text) => (
+        <Tag color={text.toLowerCase() === "yes" ? "success" : "error"}>
+          {text}
+        </Tag>
+      ),
     },
     {
       title: <BsThreeDots size={24} />,

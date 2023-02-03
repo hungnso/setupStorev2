@@ -7,6 +7,7 @@ import { currentAdmin } from "../../functions/auth";
 import LoadingToRedirect from "./LoadingToRedirect";
 
 function AdminRoute({ children, ...rest }) {
+  console.log(rest);
   const { user } = useSelector((state) => ({ ...state }));
   const [ok, setOk] = React.useState(false);
 

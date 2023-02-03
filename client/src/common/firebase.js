@@ -2,12 +2,13 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBUJj6Kr2u-C_iLw2ndotDTbIAhfG-JmE0",
-  authDomain: "ecommerce-62fba.firebaseapp.com",
-  projectId: "ecommerce-62fba",
-  storageBucket: "ecommerce-62fba.appspot.com",
-  messagingSenderId: "1013537701634",
-  appId: "1:1013537701634:web:ee9a6f146bf986a32f8c1b"
+  apiKey: "AIzaSyAEsdIauDdfuAdJpQr_LbFTllwgXUx-agE",
+  authDomain: "login-shop-8df20.firebaseapp.com",
+  projectId: "login-shop-8df20",
+  storageBucket: "login-shop-8df20.appspot.com",
+  messagingSenderId: "928862903760",
+  appId: "1:928862903760:web:e306ead252a309f8022dd5",
+  measurementId: "G-3SCMWJPV46",
 };
 // initialize firebase app
 if (!firebase.apps.length) {

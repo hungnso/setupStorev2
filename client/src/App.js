@@ -76,7 +76,6 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const idTokenResult = await user.getIdTokenResult();
-        // console.log("user", user);
         currentUser(idTokenResult.token)
           .then((res) => {
             dispatch({
@@ -118,12 +117,20 @@ function App() {
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryPage} />
-        <AdminRoute exact path="/admin/category/:slug" component={CategoryPage} />
+        <AdminRoute
+          exact
+          path="/admin/category/:slug"
+          component={CategoryPage}
+        />
         <AdminRoute exact path="/admin/sub" component={SubPage} />
         <AdminRoute exact path="/admin/sub/:slug" component={SubPage} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
         <AdminRoute exact path="/admin/products" component={ProductPage} />
-        <AdminRoute exact path="/admin/product/:slug" component={ProductUpdate} />
+        <AdminRoute
+          exact
+          path="/admin/product/:slug"
+          component={ProductUpdate}
+        />
         <AdminRoute exact path="/admin/coupon" component={CouponPage} />
         <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/category/:slug" component={CategoryHome} />

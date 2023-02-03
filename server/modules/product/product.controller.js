@@ -17,6 +17,7 @@ exports.create = async (req, res) => {
 };
 
 exports.listAll = async (req, res) => {
+  console.log(req.params);
   let products = await Product.find({})
     .limit(parseInt(req.params.limit))
     .populate("category", "_id name slug")
@@ -40,7 +41,11 @@ exports.update = async (req, res) => {
     if (req.body.name) {
       req.body.slug = slugify(req.body.name);
     }
-    const updated = await Product.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true }).exec();
+    const updated = await Product.findOneAndUpdate(
+      { slug: req.params.slug },
+      req.body,
+      { new: true }
+    ).exec();
     res.json(updated);
   } catch (err) {
     console.log("PRODUCT UPDATE ERROR ----> ", err);
@@ -82,7 +87,7 @@ exports.remove = async (req, res) => {
 
 // WITH PAGINATION
 exports.list = async (req, res) => {
-  // console.table(req.body);
+  console.log(req.query);
   try {
     // createdAt/updatedAt, desc/asc, 4
     const { sort, order, page, perPage } = req.body;
@@ -95,7 +100,7 @@ exports.list = async (req, res) => {
       .sort([[sort, order]])
       .limit(perPage)
       .exec();
-
+    console.log(products);
     res.json(products);
   } catch (err) {
     console.log(err);
@@ -128,7 +133,9 @@ exports.productStar = async (req, res) => {
 
   // who is updating?
   // check if currently logged in user have already added rating to this product?
-  let existingRatingObject = product.ratings.find((ele) => ele.postedBy.toString() === user._id.toString());
+  let existingRatingObject = product.ratings.find(
+    (ele) => ele.postedBy.toString() === user._id.toString()
+  );
 
   // if user haven't left rating yet, push it
   if (existingRatingObject === undefined) {
@@ -185,7 +192,10 @@ const handlePrice = async (req, res, price) => {
 
 const handleCategory = async (req, res, category) => {
   try {
-    let products = await Product.find({ category }).populate("category", "_id name").populate("subs", "_id name").exec();
+    let products = await Product.find({ category })
+      .populate("category", "_id name")
+      .populate("subs", "_id name")
+      .exec();
     res.json(products);
   } catch (err) {
     console.log(err);
@@ -193,17 +203,26 @@ const handleCategory = async (req, res, category) => {
 };
 
 const handleSub = async (req, res, sub) => {
-  const products = await Product.find({ subs: sub }).populate("category", "_id name").populate("subs", "_id name").exec();
+  const products = await Product.find({ subs: sub })
+    .populate("category", "_id name")
+    .populate("subs", "_id name")
+    .exec();
   res.json(products);
 };
 
 const handleColor = async (req, res, color) => {
-  const products = await Product.find({ color }).populate("category", "_id name").populate("subs", "_id name").exec();
+  const products = await Product.find({ color })
+    .populate("category", "_id name")
+    .populate("subs", "_id name")
+    .exec();
   res.json(products);
 };
 
 const handleBrand = async (req, res, brand) => {
-  const products = await Product.find({ brand }).populate("category", "_id name").populate("subs", "_id name").exec();
+  const products = await Product.find({ brand })
+    .populate("category", "_id name")
+    .populate("subs", "_id name")
+    .exec();
   res.json(products);
 };
 

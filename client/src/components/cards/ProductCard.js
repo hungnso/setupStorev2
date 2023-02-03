@@ -3,7 +3,20 @@ import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { toast } from "react-toastify";
-import { Card, Col, Image, Typography, Space, Button, Statistic, Rate, Divider, Tooltip, Tag, Badge } from "antd";
+import {
+  Card,
+  Col,
+  Image,
+  Typography,
+  Space,
+  Button,
+  Statistic,
+  Rate,
+  Divider,
+  Tooltip,
+  Tag,
+  Badge,
+} from "antd";
 import { FiHeart } from "react-icons/fi";
 import { BsCartPlus, BsSearch } from "react-icons/bs";
 import { ImFire } from "react-icons/im";
@@ -80,26 +93,59 @@ function ProductCard({ product, size = "default" }) {
         alt={slug}
         height={180}
         width={"100%"}
-        style={{ borderRadius: 8 }}
-        src={images && images.length ? images[0].url : "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"}
+        style={{ borderRadius: 8, objectFit: "scale-down" }}
+        src={
+          images && images.length
+            ? images[0].url
+            : "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
+        }
         preview={{
           visible: false,
           mask: (
             <Space size={16}>
               <Tooltip title="View product">
                 <Link to={`/product/${slug}`}>
-                  <Button type="primary" shape="circle" size="large" icon={<FaRegEye />}></Button>
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    size="large"
+                    icon={<FaRegEye />}
+                  ></Button>
                 </Link>
               </Tooltip>
               <Tooltip title={product.quantity < 1 ? "Out of Stock" : tooltip}>
-                <Button type="primary" shape="circle" size="large" onClick={handleAddToCart} disabled={product.quantity < 1} icon={<BsCartPlus />}></Button>
+                <Button
+                  type="primary"
+                  shape="circle"
+                  size="large"
+                  onClick={handleAddToCart}
+                  disabled={product.quantity < 1}
+                  icon={<BsCartPlus />}
+                ></Button>
               </Tooltip>
               {user ? (
-                <Tooltip title={product.wishlist && product.wishlist.includes(user._id) ? "Added" : "Add product to wishlist"}>
+                <Tooltip
+                  title={
+                    product.wishlist && product.wishlist.includes(user._id)
+                      ? "Added"
+                      : "Add product to wishlist"
+                  }
+                >
                   {product.wishlist && product.wishlist.includes(user._id) ? (
-                    <Button type="primary" shape="circle" size="large" icon={<FaHeart />}></Button>
+                    <Button
+                      type="primary"
+                      shape="circle"
+                      size="large"
+                      icon={<FaHeart />}
+                    ></Button>
                   ) : (
-                    <Button type="primary" shape="circle" size="large" onClick={handleAddToWishlist} icon={<FiHeart />}></Button>
+                    <Button
+                      type="primary"
+                      shape="circle"
+                      size="large"
+                      onClick={handleAddToWishlist}
+                      icon={<FiHeart />}
+                    ></Button>
                   )}
                 </Tooltip>
               ) : (
@@ -127,7 +173,11 @@ function ProductCard({ product, size = "default" }) {
     <Space direction="vertical" style={{ margin: "-16px" }}>
       {size === "default" ? (
         <>
-          <Typography.Title level={5} style={{ maxWidth: 260, marginBottom: 0 }} ellipsis>
+          <Typography.Title
+            level={5}
+            style={{ maxWidth: 260, marginBottom: 0 }}
+            ellipsis
+          >
             {name}
           </Typography.Title>
           <Typography.Text ellipsis style={{ maxWidth: 280 }}>
@@ -135,10 +185,27 @@ function ProductCard({ product, size = "default" }) {
           </Typography.Text>
           <Space split={<Divider type="vertical" />}>
             {/* <Rate disabled allowHalf defaultValue={2.5} /> */}
-            {product && product.ratings && product.ratings.length > 0 ? showAverage(product) : "No rating yet"}
+            {product && product.ratings && product.ratings.length > 0
+              ? showAverage(product)
+              : "No rating yet"}
             <Space>
-              <Statistic groupSeparator="." valueStyle={{ fontSize: 20 }} value={price} suffix="$" />
-              <Tag color="volcano" icon={<FaHeart />} style={{ padding: "4px 8px", border: 0, display: "flex", alignItems: "center", gap: 4 }}>
+              <Statistic
+                groupSeparator="."
+                valueStyle={{ fontSize: 20 }}
+                value={price}
+                suffix="$"
+              />
+              <Tag
+                color="volcano"
+                icon={<FaHeart />}
+                style={{
+                  padding: "4px 8px",
+                  border: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                }}
+              >
                 {product.wishlist.length > 0 ? product.wishlist.length : "_"}
               </Tag>
             </Space>
@@ -146,7 +213,11 @@ function ProductCard({ product, size = "default" }) {
         </>
       ) : (
         <>
-          <Typography.Title level={5} style={{ maxWidth: 220, marginBottom: 0 }} ellipsis>
+          <Typography.Title
+            level={5}
+            style={{ maxWidth: 220, marginBottom: 0 }}
+            ellipsis
+          >
             {name}
           </Typography.Title>
           <Typography.Text ellipsis style={{ maxWidth: 240 }}>
@@ -154,14 +225,41 @@ function ProductCard({ product, size = "default" }) {
           </Typography.Text>
           <Space split={<Divider type="vertical" />}>
             <Space>
-              <Tag color="gold" icon={<AiFillStar size={16} />} style={{ padding: "4px 8px", border: 0, display: "flex", alignItems: "center", gap: 4 }}>
-                {product && product.ratings && product.ratings.length > 0 ? showAverage(product, "res").toFixed(2) : "_"}
+              <Tag
+                color="gold"
+                icon={<AiFillStar size={16} />}
+                style={{
+                  padding: "4px 8px",
+                  border: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                }}
+              >
+                {product && product.ratings && product.ratings.length > 0
+                  ? showAverage(product, "res").toFixed(2)
+                  : "_"}
               </Tag>
-              <Tag color="volcano" icon={<FaHeart />} style={{ padding: "4px 8px", border: 0, display: "flex", alignItems: "center", gap: 4 }}>
+              <Tag
+                color="volcano"
+                icon={<FaHeart />}
+                style={{
+                  padding: "4px 8px",
+                  border: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                }}
+              >
                 {product.wishlist.length > 0 ? product.wishlist.length : "_"}
               </Tag>
             </Space>
-            <Statistic groupSeparator="." valueStyle={{ fontSize: 20 }} value={price} suffix="$" />
+            <Statistic
+              groupSeparator="."
+              valueStyle={{ fontSize: 20 }}
+              value={price}
+              suffix="$"
+            />
           </Space>
         </>
       )}
@@ -171,7 +269,13 @@ function ProductCard({ product, size = "default" }) {
 
   return (
     <Col sm={12} lg={8} xxl={6}>
-      <Card style={{ padding: 16 }} hoverable bordered={false} size="small" cover={renderThumbnail()}>
+      <Card
+        style={{ padding: 16 }}
+        hoverable
+        bordered={false}
+        size="small"
+        cover={renderThumbnail()}
+      >
         {renderContent()}
       </Card>
     </Col>

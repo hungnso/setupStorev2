@@ -3,7 +3,18 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
-import { Form, Input, Button, Layout, Typography, Row, Col, Space, Divider, Card } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Layout,
+  Typography,
+  Row,
+  Col,
+  Space,
+  Divider,
+  Card,
+} from "antd";
 
 import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 import { FcGoogle } from "react-icons/fc";
@@ -18,7 +29,6 @@ function Login({ history }) {
   const [loading, setLoading] = React.useState(false);
   let dispatch = useDispatch();
   const [form] = Form.useForm();
-
   const { user } = useSelector((state) => ({ ...state }));
 
   React.useEffect(() => {
@@ -48,7 +58,6 @@ function Login({ history }) {
     setLoading(true);
     try {
       const result = await auth.signInWithEmailAndPassword(email, password);
-      // console.log(result);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
 
@@ -68,7 +77,7 @@ function Login({ history }) {
               token: idTokenResult.token,
             },
           });
-          roleBasedRedirect(res.data.role);
+          // roleBasedRedirect(res.data.role);
         })
         .catch((err) => {
           console.log(err);
@@ -87,10 +96,11 @@ function Login({ history }) {
       .then(async (result) => {
         const { user } = result;
         const idTokenResult = await user.getIdTokenResult();
+        console.log(result, idTokenResult);
 
         createOrUpdateUser(idTokenResult.token)
           .then((res) => {
-            // console.log("CREATE OR UPDATE RES", res);
+            console.log("CREATE OR UPDATE RES", res);
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
@@ -119,7 +129,14 @@ function Login({ history }) {
 
   const LoginForm = () => {
     return (
-      <Form form={form} name="form-container" onFinish={handleSubmit} size="large" layout="vertical" requiredMark={false}>
+      <Form
+        form={form}
+        name="form-container"
+        onFinish={handleSubmit}
+        size="large"
+        layout="vertical"
+        requiredMark={false}
+      >
         <Typography.Title>Welcome back</Typography.Title>
         <Typography.Title level={5} type="secondary">
           Come to the Dashboard
@@ -142,13 +159,28 @@ function Login({ history }) {
             },
           ]}
         >
-          <Input prefix={<HiOutlineMail size={24} />} placeholder="Enter your email..." />
+          <Input
+            prefix={<HiOutlineMail size={24} />}
+            placeholder="Enter your email..."
+          />
         </Form.Item>
-        <Form.Item name="password" rules={[{ required: true, message: "You should input password." }]}>
-          <Input.Password prefix={<HiOutlineLockClosed size={24} />} type="password" placeholder="Enter your password..." />
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: "You should input password." }]}
+        >
+          <Input.Password
+            prefix={<HiOutlineLockClosed size={24} />}
+            type="password"
+            placeholder="Enter your password..."
+          />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: "100%" }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            style={{ width: "100%" }}
+          >
             Login
           </Button>
           <p style={{ textAlign: "right" }}>

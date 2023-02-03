@@ -2,10 +2,28 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Typography, Row, Popconfirm, Button, Statistic, Tag, Space, List, Card } from "antd";
+import {
+  Typography,
+  Row,
+  Popconfirm,
+  Button,
+  Statistic,
+  Tag,
+  Space,
+  List,
+  Card,
+} from "antd";
 import { BsCheckLg, BsXLg } from "react-icons/bs";
 
-function CheckoutSummary({ loading, disabled, products, total, totalAfterDiscount, createCashOrder, emptyCart }) {
+function CheckoutSummary({
+  loading,
+  disabled,
+  products,
+  total,
+  totalAfterDiscount,
+  createCashOrder,
+  emptyCart,
+}) {
   const { COD } = useSelector((state) => ({ ...state }));
   let history = useHistory();
   return (
@@ -19,7 +37,16 @@ function CheckoutSummary({ loading, disabled, products, total, totalAfterDiscoun
           <List.Item key={item._id}>
             <Row justify="space-between">
               <Typography.Text>
-                {item.product.name} <Tag color={item.color.toLowerCase() !== "white" && item.color.toLowerCase()}>{item.color}</Tag> x <b>{item.count}</b>
+                {item.product.name}{" "}
+                <Tag
+                  color={
+                    item.color.toLowerCase() !== "white" &&
+                    item.color.toLowerCase()
+                  }
+                >
+                  {item.color}
+                </Tag>{" "}
+                x <b>{item.count}</b>
               </Typography.Text>
               <Typography.Text>
                 <b>${item.product.price * item.count}</b>
@@ -43,14 +70,26 @@ function CheckoutSummary({ loading, disabled, products, total, totalAfterDiscoun
               }
             />
           ) : (
-            <Statistic title="Total" prefix="$" groupSeparator="." value={total} />
+            <Statistic
+              title="Total"
+              prefix="$"
+              groupSeparator="."
+              value={total}
+            />
           )
         }
       />
 
       <Space size={24}>
         {COD ? (
-          <Button size="large" type="primary" loading={loading} onClick={createCashOrder} disabled={disabled || !products.length} style={{ width: 160 }}>
+          <Button
+            size="large"
+            type="primary"
+            loading={loading}
+            onClick={createCashOrder}
+            disabled={disabled || !products.length}
+            style={{ width: 160 }}
+          >
             Place Order
           </Button>
         ) : (
@@ -65,7 +104,13 @@ function CheckoutSummary({ loading, disabled, products, total, totalAfterDiscoun
             Place Order
           </Button>
         )}
-        <Popconfirm title={<p>Sure to empty cart ?</p>} placement="topRight" okText={<BsCheckLg />} cancelText={<BsXLg />} onConfirm={() => emptyCart()}>
+        <Popconfirm
+          title={<p>Sure to empty cart ?</p>}
+          placement="topRight"
+          okText={<BsCheckLg />}
+          cancelText={<BsXLg />}
+          onConfirm={() => emptyCart()}
+        >
           <Button size="large" type="text" disabled={!products.length}>
             Empty Cart
           </Button>

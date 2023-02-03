@@ -31,6 +31,8 @@ function Register({ history }) {
         handleCodeInApp: true,
       };
 
+      console.log(config);
+
       await auth.sendSignInLinkToEmail(email, config);
 
       toast.success(
@@ -45,12 +47,21 @@ function Register({ history }) {
       setLoading(false);
       form.resetFields();
     } catch (error) {
+      console.log(error.message);
       toast.error(error.message);
+      setLoading(false);
     }
   };
 
   const RegistrationForm = () => (
-    <Form form={form} name="form-container" size="large" layout="vertical" onFinish={handleSubmit} requiredMark={false}>
+    <Form
+      form={form}
+      name="form-container"
+      size="large"
+      layout="vertical"
+      onFinish={handleSubmit}
+      requiredMark={false}
+    >
       <Typography.Title>Create new account</Typography.Title>
       <Typography.Title level={5} type="secondary">
         Just one more step
@@ -68,13 +79,20 @@ function Register({ history }) {
         help={
           <>
             You will get the link to complete registration.
-            <a target="_blank" rel="noopener noreferrer" href={"https://mail.google.com/mail/u/0/#inbox"}>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={"https://mail.google.com/mail/u/0/#inbox"}
+            >
               Check now
             </a>
           </>
         }
       >
-        <Input prefix={<HiOutlineMail size={24} />} placeholder="Enter your email..." />
+        <Input
+          prefix={<HiOutlineMail size={24} />}
+          placeholder="Enter your email..."
+        />
       </Form.Item>
       <Form.Item style={{ marginTop: 16 }}>
         <Button type="primary" htmlType="submit" style={{ width: "100%" }}>

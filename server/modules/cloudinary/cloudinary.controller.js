@@ -1,4 +1,5 @@
 const cloudinary = require("cloudinary");
+const { response } = require("express");
 
 // config
 cloudinary.config({
@@ -9,16 +10,23 @@ cloudinary.config({
 
 // req.files.file.path
 exports.upload = async (req, res) => {
-  let result = await cloudinary.uploader.upload(req.body.image, {
-    public_id: `${Date.now()}`,
-    resource_type: "auto", // jpeg, png
-  });
-  res.json({
-    public_id: result.public_id,
-    uid: result.public_id,
-    url: result.secure_url,
-    thumbUrl: result.secure_url,
-  });
+  try {
+    // console.log(req);
+    let result = await cloudinary.uploader.upload(req.body.image, {
+      public_id: `${Date.now()}`,
+      resource_type: "auto", // jpeg, png
+    });
+    res.json({
+      public_id: result.public_id,
+      uid: result.public_id,
+      url: result.secure_url,
+      thumbUrl: result.secure_url,
+    });
+  } catch (error) {
+    res.json({
+      mes: error,
+    });
+  }
 };
 
 exports.remove = (req, res) => {
