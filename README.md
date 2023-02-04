@@ -4,7 +4,7 @@
 
 Danh mục chính: Màn hình, Bàn phím, Bàn, Ghế, Phụ kiện
 
-Team Members: **Lê Minh Hoàng**, **Bùi Xuân Hiếu**, **Ngô Việt Tùng**
+Team Members: **Dương Văn Hùng**, **Ngô Việt Tùng**
 
 ## Stack
 
