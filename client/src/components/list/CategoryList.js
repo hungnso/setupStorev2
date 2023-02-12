@@ -12,7 +12,7 @@ function CategoryList() {
     setLoading(true);
     getDataAPI("categories", "")
       .then((res) => {
-        setCategories(res.data);
+        setCategories(res);
         setLoading(false);
       })
       .catch((err) => {

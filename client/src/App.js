@@ -75,6 +75,7 @@ function App() {
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
+        console.log(user)
         const idTokenResult = await user.getIdTokenResult();
         currentUser(idTokenResult.token)
           .then((res) => {
