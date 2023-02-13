@@ -4,7 +4,7 @@
 
 Danh mục chính: Màn hình, Bàn phím, Bàn, Ghế, Phụ kiện
 
-Team Members: **Lê Minh Hoàng**, **Bùi Xuân Hiếu**, **Ngô Việt Tùng**
+Team Members: **Dương Văn Hùng**, **Ngô Việt Tùng**
 
 ## Stack
 
@@ -53,7 +53,7 @@ Team Members: **Lê Minh Hoàng**, **Bùi Xuân Hiếu**, **Ngô Việt Tùng**
 - Là khách, tôi muốn đăng nhập, đăng kí để trở thành người dùng (nếu là đăng kí thì dùng firebase để gửi email xác thực, kèm đường link để dẫn đến trang đăng nhập)
 - Là khách, tối muốn khi trong giỏ hàng có order thì sau khi đăng nhập sẽ hiển thị phần giỏ hàng (Login to checkout -> Proceed to checkout)
 - Là khách, tôi muốn lọc và tìm kiếm sản phẩm (/Shop)
-- Là khách, tôi muốn lọc sản phẩm theo khoảng giá (Price), Danh mục (Category), Đánh giá (Rating), Danh mục phụ (Sub Category), Hãng (Brand), Màu sắc (Color), Shipping (Y/N)  
+- Là khách, tôi muốn lọc sản phẩm theo khoảng giá (Price), Danh mục (Category), Đánh giá (Rating), Danh mục phụ (Sub Category), Hãng (Brand), Màu sắc (Color), Shipping (Y/N)
 
 ---
 
@@ -83,15 +83,15 @@ Team Members: **Lê Minh Hoàng**, **Bùi Xuân Hiếu**, **Ngô Việt Tùng**
   - Brand
   - Category (Màn hình, Bàn phím, Bàn, Ghế, Phụ kiện)
   - Sub-categories (subs) sẽ đc hiển thị khi Category đã chọn ở trên, có thể thêm nhiều subs và xóa sub ko phù hợp
-- Là admin, tôi muốn xem tất cả các sản phẩm (Dashboard/Products) với chức năng Chỉnh sửa, Xóa  
-- Là admin, tôi muốn xem tất cả các Danh mục (Dashboard/Category) với chức năng Thêm, Chỉnh sửa, Xóa  
-- Là admin, tôi muốn xem tất cả các Danh mục phụ (Dashboard/Sub Category) với chức năng Thêm, Chỉnh sửa, Xóa  
+- Là admin, tôi muốn xem tất cả các sản phẩm (Dashboard/Products) với chức năng Chỉnh sửa, Xóa
+- Là admin, tôi muốn xem tất cả các Danh mục (Dashboard/Category) với chức năng Thêm, Chỉnh sửa, Xóa
+- Là admin, tôi muốn xem tất cả các Danh mục phụ (Dashboard/Sub Category) với chức năng Thêm, Chỉnh sửa, Xóa
 - Là admin, tôi muốn xem tất cả các Mã giảm giá (Dashboard/Coupon) với chức năng Thêm, Xóa
   - form thêm Coupon gồm các trường: mã giảm giá, %discount, ngày hết hạn
 - Là admin, tôi muốn xem tất cả order đc người dùng tạo (Dashboard/Order) và thay đổi trạng thái order
-  - sản phẩm chưa đc xử lý (Not Processed), 
+  - sản phẩm chưa đc xử lý (Not Processed),
   - sản phẩm đc thanh toán bằng tiền mặt khi đến nơi (Cash On Delivery),
-  - sản phẩm đang đc xử lý (Processing), 
+  - sản phẩm đang đc xử lý (Processing),
   - sản phẩm đã rời kho (Dispatched),
   - hủy đơn hàng (Cancelled),
   - khi sản phẩm đã đến tay người dùng (Completed).
