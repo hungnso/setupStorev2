@@ -2,7 +2,7 @@ import axios from "../axios/config";
 
 export const uploadImage = async (uri, authtoken) =>
   await axios.post(
-    `$/uploadimages`,
+    `/uploadimages`,
     { image: uri },
     {
       headers: {
@@ -12,7 +12,7 @@ export const uploadImage = async (uri, authtoken) =>
   );
 export const removeImage = async (public_id, authtoken) =>
   await axios.post(
-    `$/removeimage`,
+    `/removeimage`,
     { public_id },
     {
       headers: {

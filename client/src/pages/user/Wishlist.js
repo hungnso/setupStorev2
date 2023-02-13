@@ -21,7 +21,7 @@ function Wishlist() {
     setLoading(true);
     getWishlist(user.token).then((res) => {
       // console.log(res);
-      setWishlist(res.data.wishlist);
+      setWishlist(res.wishlist);
       setLoading(false);
     });
   };
@@ -44,7 +44,11 @@ function Wishlist() {
         <Col flex="auto">
           <Card>
             <Typography.Title level={3}>Your Wishlist</Typography.Title>
-            <WishlistList loading={loading} wishlist={wishlist} handleRemove={handleRemove} />
+            <WishlistList
+              loading={loading}
+              wishlist={wishlist}
+              handleRemove={handleRemove}
+            />
           </Card>
         </Col>
       </Row>

@@ -25,7 +25,7 @@ function ProductPage() {
     setLoading(true);
     getProductsByLimit(100)
       .then((res) => {
-        setProducts(res.data);
+        setProducts(res);
         setLoading(false);
       })
       .catch((err) => {
@@ -39,7 +39,7 @@ function ProductPage() {
     removeProduct(slug, user.token)
       .then((res) => {
         loadAllProducts();
-        toast.error(`${res.data.name} is deleted`);
+        toast.error(`${res.name} is deleted`);
       })
       .catch((err) => {
         if (err.response.status === 400) toast.error(err.response.data);
@@ -66,7 +66,11 @@ function ProductPage() {
           <Card>
             <Row gutter={[24, 24]}>
               {products.map((product) => (
-                <AdminProductCard key={product._id} product={product} handleRemove={handleRemove} />
+                <AdminProductCard
+                  key={product._id}
+                  product={product}
+                  handleRemove={handleRemove}
+                />
               ))}
             </Row>
           </Card>

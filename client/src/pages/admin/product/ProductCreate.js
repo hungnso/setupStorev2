@@ -5,7 +5,7 @@ import { createProduct } from "../../../functions/product";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 
 import { toast } from "react-toastify";
-import { Form, Layout, Row, Col, Card} from "antd";
+import { Form, Layout, Row, Col, Card } from "antd";
 
 import Loader from "../../../components/loader/Loader";
 import Profile from "../../../components/profile/Profile";
@@ -22,14 +22,14 @@ function ProductCreate({ history }) {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    const loadCategories = () => getCategories().then((c) => setCategories(c.data));
+    const loadCategories = () => getCategories().then((c) => setCategories(c));
     loadCategories();
   }, []);
 
   const handleCreate = (values) => {
     createProduct(values, user.token)
       .then((res) => {
-        toast.success(`"${res.data.name}" is created`);
+        toast.success(`"${res.name}" is created`);
         form.resetFields();
         history.push("/admin/products");
       })
@@ -41,7 +41,7 @@ function ProductCreate({ history }) {
 
   const handleCategoryChange = (value) => {
     getCategorySubs(value).then((res) => {
-      setSubOptions(res.data);
+      setSubOptions(res);
     });
     setShowSub(true);
   };

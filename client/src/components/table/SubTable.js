@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Table, Button, Typography, Space, Popconfirm, Avatar, Image } from "antd";
+import {
+  Table,
+  Button,
+  Typography,
+  Space,
+  Popconfirm,
+  Avatar,
+  Image,
+} from "antd";
 import { formatFromNow, formatDate, sorterByDate } from "../../common/utils";
 
 import { BsTrash, BsThreeDots, BsCheckLg, BsXLg } from "react-icons/bs";
@@ -16,7 +24,10 @@ function SubTable({ categories, data, handleRemove }) {
       ellipsis: true,
       render: (text, record) => (
         <Space>
-          <Avatar size={48} src={<Image src={record.image} width={48} height={48} />} />
+          <Avatar
+            size={48}
+            src={<Image src={record.image} width={48} height={48} />}
+          />
           <Typography.Text>{text}</Typography.Text>
         </Space>
       ),
@@ -29,16 +40,25 @@ function SubTable({ categories, data, handleRemove }) {
       width: 200,
       ellipsis: true,
       render: (text) => <Typography.Text>{text.name}</Typography.Text>,
-      filters: [...categories.map((item) => ({ value: item._id, text: item.name }))],
+      filters: [
+        ...categories?.map((item) => ({ value: item._id, text: item.name })),
+      ],
       onFilter: (value, record) => record.parent._id.includes(value),
-      sorter: (a, b) => (a.parent.name > b.parent.name ? 1 : b.parent.name > a.parent.name ? -1 : 0),
+      sorter: (a, b) =>
+        a.parent.name > b.parent.name
+          ? 1
+          : b.parent.name > a.parent.name
+          ? -1
+          : 0,
     },
     {
       title: "Updated",
       dataIndex: "updatedAt",
       key: "updatedAt",
       width: 170,
-      render: (text) => <Typography.Text>{formatFromNow(text)}</Typography.Text>,
+      render: (text) => (
+        <Typography.Text>{formatFromNow(text)}</Typography.Text>
+      ),
       sorter: (a, b) => sorterByDate("updatedAt")(a, b),
     },
     {

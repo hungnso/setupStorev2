@@ -1,10 +1,27 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { createCategory, getCategories, removeCategory, getCategory, updateCategory } from "../../../functions/category";
+import {
+  createCategory,
+  getCategories,
+  removeCategory,
+  getCategory,
+  updateCategory,
+} from "../../../functions/category";
 
 import { toast } from "react-toastify";
-import { Form, Layout, Row, Col, Card, Typography, Space, Tooltip, Button, Input } from "antd";
+import {
+  Form,
+  Layout,
+  Row,
+  Col,
+  Card,
+  Typography,
+  Space,
+  Tooltip,
+  Button,
+  Input,
+} from "antd";
 
 import Loader from "../../../components/loader/Loader";
 import Profile from "../../../components/profile/Profile";
@@ -12,7 +29,11 @@ import UserNav from "../../../components/nav/UserNav";
 import LocalSearch from "../../../components/form/LocalSearch";
 import CategoryTable from "../../../components/table/CategoryTable";
 
-import { BsArrowReturnRight, BsBackspaceReverse, BsFillImageFill } from "react-icons/bs";
+import {
+  BsArrowReturnRight,
+  BsBackspaceReverse,
+  BsFillImageFill,
+} from "react-icons/bs";
 
 function CategoryPage({ history, match }) {
   const { user } = useSelector((state) => ({ ...state }));
@@ -23,6 +44,7 @@ function CategoryPage({ history, match }) {
   const [categories, setCategories] = React.useState([]);
   const [keyword, setKeyword] = React.useState("");
   const slug = match.params.slug;
+  console.log(slug);
 
   React.useEffect(() => {
     loadCategories();
@@ -32,8 +54,12 @@ function CategoryPage({ history, match }) {
     if (slug) {
       const loadCategory = () =>
         getCategory(slug).then((res) => {
-          setCategory(res.data.category);
-          form.setFieldsValue({ name: res.data.category.name, image: res.data.category.image });
+          console.log(res);
+          setCategory(res.category);
+          form.setFieldsValue({
+            name: res.category.name,
+            image: res.category.image,
+          });
         });
       loadCategory();
     } else {
@@ -41,7 +67,7 @@ function CategoryPage({ history, match }) {
     }
   }, [form, slug]);
 
-  const loadCategories = () => getCategories().then((c) => setCategories(c.data));
+  const loadCategories = () => getCategories().then((c) => setCategories(c));
 
   const handleCreate = ({ name, image }) => {
     // console.log(name);
@@ -50,7 +76,7 @@ function CategoryPage({ history, match }) {
       .then((res) => {
         // console.log(res)
         setLoading(false);
-        toast.success(`"${res.data.name}" is created`);
+        toast.success(`"${res.name}" is created`);
         form.resetFields();
         loadCategories();
       })
@@ -67,7 +93,7 @@ function CategoryPage({ history, match }) {
     removeCategory(slug, user.token)
       .then((res) => {
         setLoading(false);
-        toast.error(`${res.data.name} deleted`);
+        toast.error(`${res.name} deleted`);
         history.replace("/admin/category");
         form.resetFields();
         loadCategories();
@@ -88,7 +114,7 @@ function CategoryPage({ history, match }) {
         // console.log(res)
         setLoading(false);
         form.resetFields();
-        toast.success(`"${res.data.name}" is updated`);
+        toast.success(`"${res.name}" is updated`);
         history.replace("/admin/category");
         loadCategories();
       })
@@ -102,11 +128,21 @@ function CategoryPage({ history, match }) {
   const renderFormTitle = () => {
     return (
       <Space size="small" align="start">
-        <Typography.Title level={4}>{slug ? `Update ${category.name}` : "Create new category"}</Typography.Title>
+        <Typography.Title level={4}>
+          {slug ? `Update ${category.name}` : "Create new category"}
+        </Typography.Title>
         {slug ? (
           <Link to="/admin/category">
             <Tooltip placement="topLeft" title="Back to create">
-              <Button type="text" icon={<BsBackspaceReverse size={20} onClick={() => form.resetFields()} />}></Button>
+              <Button
+                type="text"
+                icon={
+                  <BsBackspaceReverse
+                    size={20}
+                    onClick={() => form.resetFields()}
+                  />
+                }
+              ></Button>
             </Tooltip>
           </Link>
         ) : (
@@ -117,9 +153,22 @@ function CategoryPage({ history, match }) {
   };
   const renderForm = () => {
     return (
-      <Form form={form} onFinish={slug ? handleEdit : handleCreate} layout="inline" requiredMark={false} size="large">
-        <Form.Item name="name" rules={[{ required: true, message: "Please input category!" }]}>
-          <Input prefix={<BsArrowReturnRight />} placeholder="Enter category name..." autoFocus />
+      <Form
+        form={form}
+        onFinish={slug ? handleEdit : handleCreate}
+        layout="inline"
+        requiredMark={false}
+        size="large"
+      >
+        <Form.Item
+          name="name"
+          rules={[{ required: true, message: "Please input category!" }]}
+        >
+          <Input
+            prefix={<BsArrowReturnRight />}
+            placeholder="Enter category name..."
+            autoFocus
+          />
         </Form.Item>
         <Form.Item
           name="image"
@@ -132,7 +181,10 @@ function CategoryPage({ history, match }) {
             },
           ]}
         >
-          <Input prefix={<BsFillImageFill />} placeholder="Enter a image link..." />
+          <Input
+            prefix={<BsFillImageFill />}
+            placeholder="Enter a image link..."
+          />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
@@ -160,7 +212,10 @@ function CategoryPage({ history, match }) {
           </Card>
           <Card>
             <LocalSearch keyword={keyword} setKeyword={setKeyword} />
-            <CategoryTable data={categories.filter(searched(keyword))} handleRemove={handleRemove} />
+            <CategoryTable
+              data={categories?.filter(searched(keyword))}
+              handleRemove={handleRemove}
+            />
           </Card>
         </Col>
       </Row>

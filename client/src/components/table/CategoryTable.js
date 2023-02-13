@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Table, Button, Typography, Space, Popconfirm, Avatar, Image } from "antd";
+import {
+  Table,
+  Button,
+  Typography,
+  Space,
+  Popconfirm,
+  Avatar,
+  Image,
+} from "antd";
 import { formatFromNow, formatDate, sorterByDate } from "../../common/utils";
 
 import { BsTrash, BsThreeDots, BsCheckLg, BsXLg } from "react-icons/bs";
@@ -15,7 +23,10 @@ function CategoryTable({ data, handleRemove }) {
       key: "name",
       render: (text, record) => (
         <Space>
-          <Avatar size={48} src={<Image src={record.image} width={48} height={48} />} />
+          <Avatar
+            size={48}
+            src={<Image src={record.image} width={48} height={48} />}
+          />
           <Typography.Text>{text}</Typography.Text>
         </Space>
       ),
@@ -26,7 +37,9 @@ function CategoryTable({ data, handleRemove }) {
       dataIndex: "updatedAt",
       key: "updatedAt",
       width: 170,
-      render: (text) => <Typography.Text>{formatFromNow(text)}</Typography.Text>,
+      render: (text) => (
+        <Typography.Text>{formatFromNow(text)}</Typography.Text>
+      ),
       sorter: (a, b) => sorterByDate("updatedAt")(a, b),
     },
     {
@@ -71,7 +84,7 @@ function CategoryTable({ data, handleRemove }) {
       title={() => ""}
       footer={() => (
         <p style={{ position: "absolute" }}>
-          Total <b>{data.length}</b> items
+          Total <b>{data?.length}</b> items
         </p>
       )}
       rowKey={(record) => record._id}

@@ -36,7 +36,7 @@ function UploadImage({ form, setLoading, imagesList = [] }) {
               .then((res) => {
                 // console.log("IMAGE UPLOAD RES DATA", res);
                 setLoading(false);
-                allUploadedFiles.push(res.data);
+                allUploadedFiles.push(res);
                 setImages([...allUploadedFiles]);
                 form.setFieldsValue({ images: allUploadedFiles });
                 toast.success("Uploaded successfully");
@@ -58,7 +58,9 @@ function UploadImage({ form, setLoading, imagesList = [] }) {
     removeImage(public_id, user ? user.token : "")
       .then((res) => {
         setLoading(false);
-        let filteredImages = images.filter((item) => item.public_id !== public_id);
+        let filteredImages = images.filter(
+          (item) => item.public_id !== public_id
+        );
         setImages(filteredImages);
         form.setFieldsValue({ images: filteredImages });
         toast.error("Removed successfully");
@@ -82,7 +84,9 @@ function UploadImage({ form, setLoading, imagesList = [] }) {
         <p className="ant-upload-drag-icon">
           <AiOutlineInbox size={45} />
         </p>
-        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+        <p className="ant-upload-text">
+          Click or drag file to this area to upload
+        </p>
       </Upload.Dragger>
     </Form.Item>
   );

@@ -11,7 +11,7 @@ function SubList({ type = "image" }) {
   React.useEffect(() => {
     setLoading(true);
     getSubs().then((res) => {
-      setSubs(res.data);
+      setSubs(res);
       setLoading(false);
     });
   }, []);
@@ -39,7 +39,13 @@ function SubList({ type = "image" }) {
 
   return (
     <Row justify="center" gutter={[16, 16]} style={{ padding: "0 32px" }}>
-      {loading ? <h4>Loading...</h4> : type === "image" ? showSubs() : showSubsTag()}
+      {loading ? (
+        <h4>Loading...</h4>
+      ) : type === "image" ? (
+        showSubs()
+      ) : (
+        showSubsTag()
+      )}
     </Row>
   );
 }
