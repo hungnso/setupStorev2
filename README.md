@@ -4,7 +4,7 @@
 
 Danh mục chính: Màn hình, Bàn phím, Bàn, Ghế, Phụ kiện
 
-dsdssd
+Team Members: Dương Văn Hùng, Ngô Việt Tùng
 
 ## Stack
 
