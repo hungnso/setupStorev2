@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Pagination, Typography, Result, Button } from "antd";
+import { Row, Typography, Result, Button } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { getProducts, getProductsCount } from "../../functions/product";
@@ -11,12 +11,12 @@ import { AiOutlineSmile } from "react-icons/ai";
 function NewArrivals() {
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [hasMore, setHasMore] = React.useState(true);
+  // const [hasMore, setHasMore] = React.useState(true);
   const [productsCount, setProductsCount] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(2);
 
   React.useEffect(() => {
-    getProductsCount().then((res) => setProductsCount(res.data));
+    getProductsCount().then((res) => setProductsCount(res));
   }, []);
 
   React.useEffect(() => {
@@ -24,7 +24,7 @@ function NewArrivals() {
       setLoading(true);
       // sort, order, page
       getProducts("createdAt", "desc", 1, 4).then((res) => {
-        setProducts(res.data);
+        setProducts(res);
         setLoading(false);
       });
     };
@@ -37,7 +37,7 @@ function NewArrivals() {
     }
     if (productsCount > 0) {
       getProducts("createdAt", "desc", currentPage, 4).then((res) => {
-        setProducts([...products, ...res.data]);
+        setProducts([...products, ...res]);
         setLoading(false);
         console.log(products);
       });
@@ -53,9 +53,9 @@ function NewArrivals() {
         </Typography.Title>
       </Row>
       <InfiniteScroll
-        dataLength={products.length}
+        dataLength={products?.length}
         next={loadMoreData}
-        hasMore={!loading && products.length < productsCount}
+        hasMore={!loading && products?.length < productsCount}
         loader={
           <div style={{ margin: "16px 0" }}>
             <LoadingCard count={4} />
@@ -70,7 +70,7 @@ function NewArrivals() {
         }
       >
         <Row gutter={[16, 16]} style={{ paddingTop: 8, margin: "0 -8px" }}>
-          {products.map((product) => (
+          {products?.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </Row>

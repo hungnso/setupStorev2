@@ -1,11 +1,26 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Layout, Typography, Row, Col, Empty, Menu, Slider, Checkbox, Space, Tag, Card } from "antd";
+import {
+  Layout,
+  Typography,
+  Row,
+  Col,
+  Empty,
+  Menu,
+  Slider,
+  Checkbox,
+  Space,
+  Tag,
+  Card,
+} from "antd";
 
 import { getCategories } from "../functions/category";
 import { getSubs } from "../functions/sub";
-import { getProductsByLimit, fetchProductsByFilter } from "../functions/product";
+import {
+  getProductsByLimit,
+  fetchProductsByFilter,
+} from "../functions/product";
 import ProductCard from "../components/cards/ProductCard";
 import LoadingCard from "../components/cards/LoadingCard";
 import Star from "../components/form/Star";
@@ -87,8 +102,13 @@ function Store() {
   // show categories in a list of checkbox
   const showCategories = () => (
     <Space direction="vertical" size={12}>
-      {categories.map((c) => (
-        <Checkbox key={c._id} onChange={handleCheck} value={c._id} checked={categoryIds.includes(c._id)}>
+      {categories?.map((c) => (
+        <Checkbox
+          key={c._id}
+          onChange={handleCheck}
+          value={c._id}
+          checked={categoryIds.includes(c._id)}
+        >
           {c.name}
         </Checkbox>
       ))}
@@ -142,7 +162,12 @@ function Store() {
   // show products by sub category
   const showSubs = () =>
     subs.map((s) => (
-      <Tag key={s._id} onClick={() => handleSub(s)} color="volcano" style={{ cursor: "pointer", margin: 4 }}>
+      <Tag
+        key={s._id}
+        onClick={() => handleSub(s)}
+        color="volcano"
+        style={{ cursor: "pointer", margin: 4 }}
+      >
         {s.name}
       </Tag>
     ));
@@ -158,7 +183,12 @@ function Store() {
   // show products based on color
   const showColors = () =>
     colors.map((c) => (
-      <Tag key={c} color={c.toLowerCase() !== "white" && c.toLowerCase()} onClick={() => handleColor(c)} style={{ cursor: "pointer", margin: 4 }}>
+      <Tag
+        key={c}
+        color={c.toLowerCase() !== "white" && c.toLowerCase()}
+        onClick={() => handleColor(c)}
+        style={{ cursor: "pointer", margin: 4 }}
+      >
         {c}
       </Tag>
     ));
@@ -176,22 +206,49 @@ function Store() {
   // show products based on shipping yes/no
 
   const renderMenu = () => (
-    <Menu defaultOpenKeys={["1", "2", "3", "4", "5"]} mode="inline" theme="light" style={{ paddingRight: 8, margin: "32px 0" }}>
-      <Menu.SubMenu key="1" icon={<AiOutlineDollar />} title={<span>Price</span>}>
+    <Menu
+      defaultOpenKeys={["1", "2", "3", "4", "5"]}
+      mode="inline"
+      theme="light"
+      style={{ paddingRight: 8, margin: "32px 0" }}
+    >
+      <Menu.SubMenu
+        key="1"
+        icon={<AiOutlineDollar />}
+        title={<span>Price</span>}
+      >
         <div style={{ margin: "24px 8px" }}>
-          <Slider tipFormatter={(v) => `$${v}`} range max="1999" value={price} onChange={handleSlider} />
+          <Slider
+            tipFormatter={(v) => `$${v}`}
+            range
+            max="1999"
+            value={price}
+            onChange={handleSlider}
+          />
         </div>
       </Menu.SubMenu>
-      <Menu.SubMenu key="2" icon={<BiCategory />} title={<span>Categories</span>}>
+      <Menu.SubMenu
+        key="2"
+        icon={<BiCategory />}
+        title={<span>Categories</span>}
+      >
         <div style={{ margin: "16px 24px" }}>{showCategories()}</div>
       </Menu.SubMenu>
       <Menu.SubMenu key="3" icon={<AiFillStar />} title={<span>Rating</span>}>
         <div style={{ margin: "16px 24px" }}>{showStars()}</div>
       </Menu.SubMenu>
-      <Menu.SubMenu key="4" icon={<BiCategory />} title={<span>Sub Categories</span>}>
+      <Menu.SubMenu
+        key="4"
+        icon={<BiCategory />}
+        title={<span>Sub Categories</span>}
+      >
         <div style={{ margin: "16px 24px" }}>{showSubs()}</div>
       </Menu.SubMenu>
-      <Menu.SubMenu key="5" icon={<AiOutlineBgColors />} title={<span>Colors</span>}>
+      <Menu.SubMenu
+        key="5"
+        icon={<AiOutlineBgColors />}
+        title={<span>Colors</span>}
+      >
         <div style={{ margin: "16px 24px" }}>{showColors()}</div>
       </Menu.SubMenu>
     </Menu>

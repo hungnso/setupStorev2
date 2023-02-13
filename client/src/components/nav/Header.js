@@ -31,7 +31,6 @@ function Header() {
   let dispatch = useDispatch();
   let history = useHistory();
   let { user, cart } = useSelector((state) => ({ ...state }));
-  console.log(user);
   let { pathname } = useLocation();
   const [affixed, setAffixed] = React.useState(false);
 

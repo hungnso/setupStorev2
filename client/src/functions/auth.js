@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from "../axios/config";
 
 export const createOrUpdateUser = async (authtoken) => {
   return await axios.post(
-    `${process.env.REACT_APP_API}/create-or-update-user`,
+    `/create-or-update-user`,
     {},
     {
       headers: {
@@ -14,7 +14,7 @@ export const createOrUpdateUser = async (authtoken) => {
 
 export const currentUser = async (authtoken) => {
   return await axios.post(
-    `${process.env.REACT_APP_API}/current-user`,
+    `/current-user`,
     {},
     {
       headers: {
@@ -26,7 +26,7 @@ export const currentUser = async (authtoken) => {
 
 export const currentAdmin = async (authtoken) => {
   return await axios.post(
-    `${process.env.REACT_APP_API}/current-admin`,
+    `/current-admin`,
     {},
     {
       headers: {

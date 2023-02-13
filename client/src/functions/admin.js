@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from "../axios/config";
 
 export const getOrders = async (authtoken) =>
-  await axios.get(`${process.env.REACT_APP_API}/admin/orders`, {
+  await axios.get(`/admin/orders`, {
     headers: {
       authtoken,
     },
@@ -9,7 +9,7 @@ export const getOrders = async (authtoken) =>
 
 export const changeStatus = async (orderId, orderStatus, authtoken) =>
   await axios.put(
-    `${process.env.REACT_APP_API}/admin/order-status`,
+    `/admin/order-status`,
     { orderId, orderStatus },
     {
       headers: {

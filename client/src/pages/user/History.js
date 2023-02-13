@@ -22,7 +22,7 @@ function History() {
     setLoading(true);
     getUserOrders(user.token).then((res) => {
       // console.log(JSON.stringify(res.data, null, 4));
-      setOrders(res.data);
+      setOrders(res);
       setLoading(false);
     });
   };
@@ -37,7 +37,11 @@ function History() {
         <Col flex="auto">
           <Card>
             <Typography.Title level={3}>Your History</Typography.Title>
-            {orders.length > 0 ? <OrdersList loading={loading} orders={orders} /> : <EmptyCard type={"history"} />}
+            {orders.length > 0 ? (
+              <OrdersList loading={loading} orders={orders} />
+            ) : (
+              <EmptyCard type={"history"} />
+            )}
           </Card>
         </Col>
       </Row>

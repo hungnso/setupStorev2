@@ -27,7 +27,7 @@ function AdminDashboard() {
     setLoading(true);
     getOrders(user.token).then((res) => {
       // console.log(JSON.stringify(res.data, null, 4));
-      setOrders(res.data);
+      setOrders(res);
       setLoading(false);
     });
   };
@@ -41,7 +41,10 @@ function AdminDashboard() {
 
   const getTotalAmountInStatus = (status) => {
     return orders.reduce((currentValue, nextValue) => {
-      return currentValue + (nextValue.orderStatus === status && nextValue.paymentIntent.amount);
+      return (
+        currentValue +
+        (nextValue.orderStatus === status && nextValue.paymentIntent.amount)
+      );
     }, 0);
   };
 
@@ -53,14 +56,20 @@ function AdminDashboard() {
 
   const dataDonutChart = () => {
     return orders.map((item) => ({
-      type: item.paymentIntent.payment_method_types[0] !== "card" ? item.paymentIntent.status : item.orderStatus,
+      type:
+        item.paymentIntent.payment_method_types[0] !== "card"
+          ? item.paymentIntent.status
+          : item.orderStatus,
       value: getTotalOrdersInStatus(item.orderStatus) ?? 0,
     }));
   };
 
   const dataBarChart = () => {
     return orders.map((item) => ({
-      type: item.paymentIntent.payment_method_types[0] !== "card" ? item.paymentIntent.status : item.orderStatus,
+      type:
+        item.paymentIntent.payment_method_types[0] !== "card"
+          ? item.paymentIntent.status
+          : item.orderStatus,
       amount: getTotalAmountInStatus(item.orderStatus) / 100 ?? 0,
     }));
   };
@@ -83,7 +92,11 @@ function AdminDashboard() {
                 <DonutPieChart data={_.uniqBy(dataDonutChart(), "type")} />
               </Col>
             </Row>
-            <OrderTable loading={loading} data={orders} handleStatusChange={handleStatusChange} />
+            <OrderTable
+              loading={loading}
+              data={orders}
+              handleStatusChange={handleStatusChange}
+            />
           </Card>
         </Col>
       </Row>

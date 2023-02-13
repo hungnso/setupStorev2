@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "../axios/config";
 
-export const getCoupons = async () => await axios.get(`${process.env.REACT_APP_API}/coupons`);
+export const getCoupons = async () => await axios.get(`/coupons`);
 
 export const removeCoupon = async (couponId, authtoken) =>
-  await axios.delete(`${process.env.REACT_APP_API}/coupon/${couponId}`, {
+  await axios.delete(`/coupon/${couponId}`, {
     headers: {
       authtoken,
     },
@@ -11,7 +11,7 @@ export const removeCoupon = async (couponId, authtoken) =>
 
 export const createCoupon = async (coupon, authtoken) =>
   await axios.post(
-    `${process.env.REACT_APP_API}/coupon`,
+    `/coupon`,
     { coupon },
     {
       headers: {

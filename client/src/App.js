@@ -1,9 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { auth } from "./common/firebase";
 import { currentUser } from "./functions/auth";
-import Loader from "./components/loader/Loader";
+// import Loader from "./components/loader/Loader";
 import "./App.less";
 import "@ant-design/flowchart/dist/index.css";
 
@@ -81,13 +81,13 @@ function App() {
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
-                _id: res.data._id,
-                name: res.data.name,
-                email: res.data.email,
-                picture: res.data.picture,
-                role: res.data.role,
-                area: res.data.area,
-                address: res.data.address,
+                _id: res._id,
+                name: res.name,
+                email: res.email,
+                picture: res.picture,
+                role: res.role,
+                area: res.area,
+                address: res.address,
                 token: idTokenResult.token,
               },
             });

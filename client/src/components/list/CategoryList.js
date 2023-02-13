@@ -11,8 +11,8 @@ function CategoryList() {
   React.useEffect(() => {
     setLoading(true);
     getDataAPI("categories", "")
-      .then((res) => {
-        setCategories(res.data);
+      .then((data) => {
+        setCategories(data);
         setLoading(false);
       })
       .catch((err) => {

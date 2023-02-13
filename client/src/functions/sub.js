@@ -1,25 +1,25 @@
-import axios from "axios";
+import axios from "../axios/config";
 
-export const getSubs = async () => await axios.get(`${process.env.REACT_APP_API}/subs`);
+export const getSubs = async () => await axios.get(`/subs`);
 
-export const getSub = async (slug) => await axios.get(`${process.env.REACT_APP_API}/sub/${slug}`);
+export const getSub = async (slug) => await axios.get(`/sub/${slug}`);
 
 export const removeSub = async (slug, authtoken) =>
-  await axios.delete(`${process.env.REACT_APP_API}/sub/${slug}`, {
+  await axios.delete(`/sub/${slug}`, {
     headers: {
       authtoken,
     },
   });
 
 export const updateSub = async (slug, sub, authtoken) =>
-  await axios.put(`${process.env.REACT_APP_API}/sub/${slug}`, sub, {
+  await axios.put(`/sub/${slug}`, sub, {
     headers: {
       authtoken,
     },
   });
 
 export const createSub = async (sub, authtoken) =>
-  await axios.post(`${process.env.REACT_APP_API}/sub`, sub, {
+  await axios.post(`/sub`, sub, {
     headers: {
       authtoken,
     },

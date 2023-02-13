@@ -24,7 +24,9 @@ function Product({ match }) {
 
   React.useEffect(() => {
     if (product.ratings && user) {
-      let existingRatingObject = product.ratings.find((ele) => ele.postedBy.toString() === user._id.toString());
+      let existingRatingObject = product.ratings.find(
+        (ele) => ele.postedBy.toString() === user._id.toString()
+      );
       existingRatingObject && setStar(existingRatingObject.star); // current user's star
     }
   }, [user]);
@@ -34,8 +36,8 @@ function Product({ match }) {
     getProduct(slug)
       .then((res) => {
         setLoading(false);
-        setProduct(res.data);
-        getRelated(res.data._id).then((res) => setRelated(res.data));
+        setProduct(res);
+        getRelated(res._id).then((res) => setRelated(res));
       })
       .catch((err) => {
         console.log(err);
@@ -57,7 +59,13 @@ function Product({ match }) {
       <Divider orientation="left">
         <Typography.Link>Related Products</Typography.Link>
       </Divider>
-      <Row gutter={[16, 16]}>{related.length ? related.map((r) => <ProductCard key={r._id} product={r} />) : <Empty />}</Row>
+      <Row gutter={[16, 16]}>
+        {related.length ? (
+          related.map((r) => <ProductCard key={r._id} product={r} />)
+        ) : (
+          <Empty />
+        )}
+      </Row>
     </Layout.Content>
   );
 }

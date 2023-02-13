@@ -30,6 +30,7 @@ function Login({ history }) {
   let dispatch = useDispatch();
   const [form] = Form.useForm();
   const { user } = useSelector((state) => ({ ...state }));
+  console.log(user);
 
   React.useEffect(() => {
     let intended = history.location.state;
@@ -43,6 +44,7 @@ function Login({ history }) {
   const roleBasedRedirect = (role) => {
     // check if intended
     let intended = history.location.state;
+    console.log(intended);
     if (intended) {
       history.push(intended.from);
     } else {
@@ -67,13 +69,13 @@ function Login({ history }) {
           dispatch({
             type: "LOGGED_IN_USER",
             payload: {
-              _id: res.data._id,
-              name: res.data.name,
-              email: res.data.email,
-              picture: res.data.picture,
-              area: res.data.area,
-              address: res.data.address,
-              role: res.data.role,
+              _id: res._id,
+              name: res.name,
+              email: res.email,
+              picture: res.picture,
+              area: res.area,
+              address: res.address,
+              role: res.role,
               token: idTokenResult.token,
             },
           });
@@ -104,13 +106,13 @@ function Login({ history }) {
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
-                _id: res.data._id,
-                name: res.data.name,
-                email: res.data.email,
-                picture: res.data.picture,
-                area: res.data.area,
-                address: res.data.address,
-                role: res.data.role,
+                _id: res._id,
+                name: res.name,
+                email: res.email,
+                picture: res.picture,
+                area: res.area,
+                address: res.address,
+                role: res.role,
                 token: idTokenResult.token,
               },
             });

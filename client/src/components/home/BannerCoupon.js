@@ -1,9 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Row, Col, Card, Typography, Space, Button, Skeleton, Badge } from "antd";
+import {
+  Row,
+  Col,
+  Card,
+  Typography,
+  Space,
+  Button,
+  Skeleton,
+  Badge,
+} from "antd";
 import { getCoupons } from "../../functions/coupon";
-import { formatDate } from "../../common/utils";
+// import { formatDate } from "../../common/utils";
 import { FaGift } from "react-icons/fa";
 
 const getRandomInt = (min, max) => {
@@ -27,8 +36,8 @@ function BannerCoupon() {
   const loadRandomCoupon = () => {
     setLoading(true);
     getCoupons().then((res) => {
-      const coupons = res.data;
-      setCoupons(res.data);
+      const coupons = res;
+      setCoupons(res);
       setCoupon(coupons[randomInt]);
       setLoading(false);
     });
@@ -41,7 +50,12 @@ function BannerCoupon() {
           type="primary"
           size="large"
           disabled={loading}
-          onClick={() => setRandomInt(randomInt !== getRandomInt(0, coupons.length + 6) && getRandomInt(0, coupons.length + 6))}
+          onClick={() =>
+            setRandomInt(
+              randomInt !== getRandomInt(0, coupons.length + 6) &&
+                getRandomInt(0, coupons.length + 6)
+            )
+          }
           icon={<FaGift />}
         ></Button>
       }
@@ -55,9 +69,14 @@ function BannerCoupon() {
             <Col span={24}>
               {coupon ? (
                 <Space direction="vertical" align="center">
-                  <Typography.Text type="success">Hooray, You got a lucky coupon</Typography.Text>
+                  <Typography.Text type="success">
+                    Hooray, You got a lucky coupon
+                  </Typography.Text>
                   <Space split="·">
-                    <Typography.Paragraph style={{ margin: 0, fontSize: 24 }} copyable>
+                    <Typography.Paragraph
+                      style={{ margin: 0, fontSize: 24 }}
+                      copyable
+                    >
                       {coupon.name}
                     </Typography.Paragraph>
                     {/* <Typography.Text>{formatDate(coupon.expiry)}</Typography.Text> */}
@@ -65,7 +84,9 @@ function BannerCoupon() {
                   </Space>
                 </Space>
               ) : (
-                <Typography.Text ellipsis>Oops, get your lucky coupon next time</Typography.Text>
+                <Typography.Text ellipsis>
+                  Oops, get your lucky coupon next time
+                </Typography.Text>
               )}
             </Col>
           </Row>
