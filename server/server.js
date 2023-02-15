@@ -23,7 +23,7 @@ app.use(cors());
 readdirSync("./modules").map((r) => app.use("/api", require("./modules/" + r)));
 
 // port
-const port = process.env.PORT || 9090;
+const port = process.env.PORT || 9191;
 app.listen(port, (err) => {
   if (err) throw err;
   console.log(`Server is running on port ${port}`);
