@@ -5,7 +5,7 @@ import { getProduct, updateProduct } from "../../../functions/product";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 
 import { toast } from "react-toastify";
-import { Form, Layout, Row, Col, Card} from "antd";
+import { Form, Layout, Row, Col, Card } from "antd";
 
 import Loader from "../../../components/loader/Loader";
 import Profile from "../../../components/profile/Profile";
@@ -38,11 +38,6 @@ function ProductUpdate({ history, match }) {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    loadProduct();
-    loadCategories();
-  }, []);
-
-  const loadProduct = () => {
     getProduct(slug).then((p) => {
       setValues({ ...values, ...p.data });
       getCategorySubs(p.data.category._id).then((res) => {
@@ -52,7 +47,20 @@ function ProductUpdate({ history, match }) {
       p.data.subs.forEach((s) => arr.push(s._id));
       setArrayOfSubs((prev) => arr);
     });
-  };
+    loadCategories();
+  }, []);
+
+  // const loadProduct = () => {
+  //   getProduct(slug).then((p) => {
+  //     setValues({ ...values, ...p.data });
+  //     getCategorySubs(p.data.category._id).then((res) => {
+  //       setSubOptions(res.data);
+  //     });
+  //     let arr = [];
+  //     p.data.subs.forEach((s) => arr.push(s._id));
+  //     setArrayOfSubs((prev) => arr);
+  //   });
+  // };
 
   const loadCategories = () =>
     getCategories().then((c) => {

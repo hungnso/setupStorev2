@@ -30,10 +30,6 @@ function BannerCoupon() {
   // const { user } = useSelector((state) => ({ ...state }));
 
   React.useEffect(() => {
-    loadRandomCoupon();
-  }, [randomInt]);
-
-  const loadRandomCoupon = () => {
     setLoading(true);
     getCoupons().then((res) => {
       const coupons = res;
@@ -41,7 +37,17 @@ function BannerCoupon() {
       setCoupon(coupons[randomInt]);
       setLoading(false);
     });
-  };
+  }, [randomInt]);
+
+  // const loadRandomCoupon = () => {
+  //   setLoading(true);
+  //   getCoupons().then((res) => {
+  //     const coupons = res;
+  //     setCoupons(res);
+  //     setCoupon(coupons[randomInt]);
+  //     setLoading(false);
+  //   });
+  // };
   return (
     <Badge
       offset={[12, 48]}

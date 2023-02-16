@@ -2,7 +2,7 @@ import React from "react";
 
 import { Row, Typography, Carousel, Button } from "antd";
 
-import { getProducts, getProductsCount } from "../../functions/product";
+import { getProducts } from "../../functions/product";
 import ProductCard from "../cards/ProductCard";
 import LoadingCard from "../cards/LoadingCard";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";

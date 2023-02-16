@@ -15,17 +15,22 @@ function History() {
   const { user } = useSelector((state) => ({ ...state }));
 
   React.useEffect(() => {
-    loadUserOrders();
-  }, []);
-
-  const loadUserOrders = () => {
     setLoading(true);
     getUserOrders(user.token).then((res) => {
       // console.log(JSON.stringify(res.data, null, 4));
       setOrders(res);
       setLoading(false);
     });
-  };
+  }, [user.token]);
+
+  // const loadUserOrders = () => {
+  //   setLoading(true);
+  //   getUserOrders(user.token).then((res) => {
+  //     // console.log(JSON.stringify(res.data, null, 4));
+  //     setOrders(res);
+  //     setLoading(false);
+  //   });
+  // };
 
   return (
     <Layout.Content>
