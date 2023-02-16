@@ -22,14 +22,14 @@ function Wishlist() {
     });
   }, [user.token]);
 
-  // const loadWishlist = () => {
-  //   setLoading(true);
-  //   getWishlist(user.token).then((res) => {
-  //     // console.log(res);
-  //     setWishlist(res.wishlist);
-  //     setLoading(false);
-  //   });
-  // };
+  const loadWishlist = () => {
+    setLoading(true);
+    getWishlist(user.token).then((res) => {
+      // console.log(res);
+      setWishlist(res.wishlist);
+      setLoading(false);
+    });
+  };
 
   const handleRemove = (productId) => {
     setLoading(true);

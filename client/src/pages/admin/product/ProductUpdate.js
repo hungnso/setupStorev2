@@ -50,17 +50,17 @@ function ProductUpdate({ history, match }) {
     loadCategories();
   }, []);
 
-  // const loadProduct = () => {
-  //   getProduct(slug).then((p) => {
-  //     setValues({ ...values, ...p.data });
-  //     getCategorySubs(p.data.category._id).then((res) => {
-  //       setSubOptions(res.data);
-  //     });
-  //     let arr = [];
-  //     p.data.subs.forEach((s) => arr.push(s._id));
-  //     setArrayOfSubs((prev) => arr);
-  //   });
-  // };
+  const loadProduct = () => {
+    getProduct(slug).then((p) => {
+      setValues({ ...values, ...p.data });
+      getCategorySubs(p.data.category._id).then((res) => {
+        setSubOptions(res.data);
+      });
+      let arr = [];
+      p.data.subs.forEach((s) => arr.push(s._id));
+      setArrayOfSubs((prev) => arr);
+    });
+  };
 
   const loadCategories = () =>
     getCategories().then((c) => {

@@ -39,18 +39,18 @@ function Product({ match }) {
     }
   }, [user, product.ratings]);
 
-  // const loadSingleProduct = () => {
-  //   // setLoading(true);
-  //   getProduct(slug)
-  //     .then((res) => {
-  //       // setLoading(false);
-  //       setProduct(res);
-  //       getRelated(res._id).then((res) => setRelated(res));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const loadSingleProduct = () => {
+    // setLoading(true);
+    getProduct(slug)
+      .then((res) => {
+        // setLoading(false);
+        setProduct(res);
+        getRelated(res._id).then((res) => setRelated(res));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const onStarClick = (newRating, name) => {
     setStar(newRating);
