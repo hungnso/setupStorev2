@@ -48,7 +48,7 @@ function ProductUpdate({ history, match }) {
       setArrayOfSubs((prev) => arr);
     });
     loadCategories();
-  }, []);
+  }, [slug, values]);
 
   const loadProduct = () => {
     getProduct(slug).then((p) => {
