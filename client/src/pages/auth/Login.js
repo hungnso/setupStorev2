@@ -13,7 +13,6 @@ import {
   Col,
   Space,
   Divider,
-  Card,
 } from "antd";
 
 import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Typography, Result, Button } from "antd";
+import { Row, Typography, Result } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { getProducts, getProductsCount } from "../../functions/product";

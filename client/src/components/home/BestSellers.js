@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Row, Typography, Pagination, Carousel, Button } from "antd";
+import { Row, Typography, Carousel, Button } from "antd";
 
 import { getProducts, getProductsCount } from "../../functions/product";
 import ProductCard from "../cards/ProductCard";
@@ -10,12 +10,12 @@ import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 function BestSellers() {
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [productsCount, setProductsCount] = React.useState(0);
-  const [currentPage, setCurrentPage] = React.useState(1);
+  // const [productsCount, setProductsCount] = React.useState(0);
+  const currentPage = 1
 
   React.useEffect(() => {
     loadAllProducts();
-  }, [currentPage]);
+  }, []);
 
   // Lấy danh sách các sản phẩn best Sellers filter ( // sort, order, limit)
   const loadAllProducts = () => {
@@ -26,9 +26,9 @@ function BestSellers() {
     });
   };
 
-  React.useEffect(() => {
-    getProductsCount().then((res) => setProductsCount(res.data));
-  }, []);
+  // React.useEffect(() => {
+  //   getProductsCount().then((res) => setProductsCount(res.data));
+  // }, []);
 
   return (
     <>

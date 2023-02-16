@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Layout, Typography, Row, Col, Card } from "antd";
 
 import { getOrders, changeStatus } from "../../functions/admin";
-import { formatDate } from "../../common/utils";
+// import { formatDate } from "../../common/utils";
 import Profile from "../../components/profile/Profile";
 import UserNav from "../../components/nav/UserNav";
 import OrderTable from "../../components/table/OrderTable";

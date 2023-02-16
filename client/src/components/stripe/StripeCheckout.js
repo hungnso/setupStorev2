@@ -34,7 +34,7 @@ function StripeCheckout({ history }) {
       setTotalAfterDiscount(res.data.totalAfterDiscount);
       setPayable(res.data.payable);
     });
-  }, []);
+  }, [coupon, user.token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

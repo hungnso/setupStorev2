@@ -37,7 +37,7 @@ function Store() {
   const [categories, setCategories] = React.useState([]);
   const [categoryIds, setCategoryIds] = React.useState([]);
   const [subs, setSubs] = React.useState([]);
-  const [star, setStar] = React.useState("");
+  // const [star, setStar] = React.useState("");
 
   let dispatch = useDispatch();
   let { search } = useSelector((state) => ({ ...state }));
@@ -67,7 +67,7 @@ function Store() {
   const resetStates = () => {
     setPrice([0, 0]);
     setCategoryIds([]);
-    setStar("");
+    // setStar("");
   };
   // load products on user search input
   React.useEffect(() => {
@@ -83,7 +83,7 @@ function Store() {
   // load products based on price range
   React.useEffect(() => {
     if (ok) fetchProducts({ price });
-  }, [ok]);
+  }, [ok, price]);
 
   const handleSlider = (value) => {
     dispatch({
@@ -145,7 +145,7 @@ function Store() {
       payload: { text: "" },
     });
     resetStates();
-    setStar(num);
+    // setStar(num);
     fetchProducts({ stars: num });
   };
 

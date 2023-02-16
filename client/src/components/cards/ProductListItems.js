@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Avatar, Typography, Space, Progress, Statistic, Rate, Divider, Tag, Tooltip } from "antd";
+import { Row, Col, Avatar, Typography, Space, Progress, Statistic, Divider, Tag, Tooltip } from "antd";
 import { showAverage } from "../../functions/rating";
 function ProductListItems({ product }) {
   const { name, desc, price, category, subs, shipping, color, brand, quantity, sold, ratings } = product;
@@ -75,10 +75,10 @@ function ProductListItems({ product }) {
           <Avatar.Group maxCount={5} maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
             {product && ratings && ratings.length > 0
               ? ratings.map((item) => (
-                  <Tooltip title={item.postedBy.name}>
-                    <Avatar src={item.postedBy.picture} />
-                  </Tooltip>
-                ))
+                <Tooltip title={item.postedBy.name}>
+                  <Avatar src={item.postedBy.picture} />
+                </Tooltip>
+              ))
               : "No rating yet"}
           </Avatar.Group>
         </Space>

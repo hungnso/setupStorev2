@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:9090/api",
+  baseURL: process.env.REACT_APP_SERVER_API_URL,
 });
+
+console.log(process.env.REACT_APP_SERVER_API_URL)
 
 instance.interceptors.request.use(
   (config) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Avatar, Space } from "antd";
 import { Link } from "react-router-dom";
-import { getCategories } from "../../functions/category";
+// import { getCategories } from "../../functions/category";
 import { getDataAPI } from "../../functions/fetchData";
 
 function CategoryList() {
@@ -35,7 +35,7 @@ function CategoryList() {
 
   return (
     <Row justify="space-between" style={{ padding: "0 32px" }}>
-      {showCategories()}
+      {loading ? <div> Loading ....</div> : showCategories()}
     </Row>
   );
 }

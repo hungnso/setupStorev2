@@ -1,5 +1,5 @@
 import React from "react";
-import { Statistic, Space, Divider, Typography, Row, Button, Badge } from "antd";
+import { Statistic, Space, Divider, Row, Button, Badge } from "antd";
 
 import { setColor } from "../../common/utils";
 import OrderDetail from "./OrderDetail";

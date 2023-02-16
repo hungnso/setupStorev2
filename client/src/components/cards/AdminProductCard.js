@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, Col, Popconfirm, Typography, Image, Space, Button, Row, Tag, Badge } from "antd";
 import { ImFire } from "react-icons/im";
 
-import { BsCheckLg, BsXLg, BsSearch } from "react-icons/bs";
+import { BsCheckLg, BsXLg } from "react-icons/bs";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa";
 

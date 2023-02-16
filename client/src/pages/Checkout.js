@@ -28,7 +28,7 @@ function Checkout({ history }) {
       setTotal(res.data.cartTotal);
       setAreaSaved(user.area);
     });
-  }, []);
+  }, [user.area, user.token]);
 
   const emptyCart = () => {
     setLoading(true);

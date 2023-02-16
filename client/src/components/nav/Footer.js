@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Layout, Row, Col, Space, Button, Typography } from "antd";
+import { Layout, Row, Space, Typography } from "antd";
 import { FaFacebookF, FaTwitter, FaGoogle } from "react-icons/fa";
 import BannerCoupon from "../home/BannerCoupon";
 

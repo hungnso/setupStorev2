@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import {
   Row,
@@ -27,7 +27,7 @@ function BannerCoupon() {
   const [coupon, setCoupon] = React.useState("");
   const [randomInt, setRandomInt] = React.useState(getRandomInt(0, 99));
 
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
 
   React.useEffect(() => {
     loadRandomCoupon();
@@ -53,7 +53,7 @@ function BannerCoupon() {
           onClick={() =>
             setRandomInt(
               randomInt !== getRandomInt(0, coupons.length + 6) &&
-                getRandomInt(0, coupons.length + 6)
+              getRandomInt(0, coupons.length + 6)
             )
           }
           icon={<FaGift />}

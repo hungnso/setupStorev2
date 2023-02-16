@@ -11,14 +11,13 @@ import {
   Space,
   Button,
   Statistic,
-  Rate,
   Divider,
   Tooltip,
   Tag,
   Badge,
 } from "antd";
 import { FiHeart } from "react-icons/fi";
-import { BsCartPlus, BsSearch } from "react-icons/bs";
+import { BsCartPlus } from "react-icons/bs";
 import { ImFire } from "react-icons/im";
 import { FaHeart, FaRegEye } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";

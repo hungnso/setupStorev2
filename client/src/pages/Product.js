@@ -4,14 +4,14 @@ import { useSelector } from "react-redux";
 import { Layout, Typography, Row, Divider, Empty } from "antd";
 import { getProduct, getRelated, productStar } from "../functions/product";
 
-import Loader from "../components/loader/Loader";
+// import Loader from "../components/loader/Loader";
 import SingleProduct from "../components/cards/SingleProduct";
 import ProductCard from "../components/cards/ProductCard";
 
 function Product({ match }) {
   const [product, setProduct] = React.useState({});
   const [related, setRelated] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  // const [loading, setLoading] = React.useState(false);
   const [star, setStar] = React.useState(0);
 
   const { user } = useSelector((state) => ({ ...state }));
@@ -29,13 +29,13 @@ function Product({ match }) {
       );
       existingRatingObject && setStar(existingRatingObject.star); // current user's star
     }
-  }, [user]);
+  }, [user, product.ratings]);
 
   const loadSingleProduct = () => {
-    setLoading(true);
+    // setLoading(true);
     getProduct(slug)
       .then((res) => {
-        setLoading(false);
+        // setLoading(false);
         setProduct(res);
         getRelated(res._id).then((res) => setRelated(res));
       })
