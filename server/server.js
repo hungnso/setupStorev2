@@ -16,16 +16,12 @@ mongoose
 
 // middleware
 
-app.use((function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_DOMAIN)
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  next()
-}))
-app.use(cors({
-  origin: '*'
-}));
+const corsOptions = {
+  origin: '*',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "2mb" }));
 
@@ -39,4 +35,5 @@ const port = process.env.PORT || 9191;
 app.listen(port, (err) => {
   if (err) throw err;
   console.log(`Server is running on port ${port}`);
+
 });
