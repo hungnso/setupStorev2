@@ -54,7 +54,6 @@ function CategoryPage({ history, match }) {
     if (slug) {
       const loadCategory = () =>
         getCategory(slug).then((res) => {
-          console.log(res);
           setCategory(res.category);
           form.setFieldsValue({
             name: res.category.name,

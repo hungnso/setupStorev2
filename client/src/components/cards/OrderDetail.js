@@ -18,7 +18,7 @@ function OrderDetail({ order, visible, setVisible }) {
   };
 
   const total = order.products.reduce((currentValue, nextValue) => {
-    return currentValue + nextValue.count * nextValue.product.price;
+    return currentValue + nextValue.count * nextValue.product?.price;
   }, 0);
 
   const totalAfterDiscount = order.paymentIntent.amount / 100;

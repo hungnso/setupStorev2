@@ -46,22 +46,22 @@ function Store() {
   React.useEffect(() => {
     loadAllProducts();
     // fetch categories
-    getCategories().then((res) => setCategories(res.data));
+    getCategories().then((res) => setCategories(res));
     // fetch subcategories
-    getSubs().then((res) => setSubs(res.data));
+    getSubs().then((res) => setSubs(res));
   }, []);
 
   const loadAllProducts = () => {
     setLoading(true);
     getProductsByLimit(40).then((p) => {
-      setProducts(p.data);
+      setProducts(p);
       setLoading(false);
     });
   };
 
   const fetchProducts = (arg) => {
     fetchProductsByFilter(arg).then((res) => {
-      setProducts(res.data);
+      setProducts(res);
     });
   };
   const resetStates = () => {

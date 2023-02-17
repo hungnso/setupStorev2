@@ -7,6 +7,7 @@ export const getCategory = async (slug) => await axios.get(`/category/${slug}`);
 export const removeCategory = async (slug, authtoken) =>
   await axios.delete(`/category/${slug}`, {
     headers: {
+
       authtoken,
     },
   });

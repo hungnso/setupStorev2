@@ -13,7 +13,7 @@ function SideDrawer({ children }) {
       title={`Cart / ${cart.length} Product`}
       placement="right"
       closable={false}
-      visible={drawer}
+      open={drawer}
       onClose={() => {
         dispatch({
           type: "SET_VISIBLE",
